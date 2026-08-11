@@ -1,7 +1,8 @@
-<div class="bg-gray-200 py-3 px-6 w-2xs rounded-2xl">
+<div class="bg-gray-200 py-3 px-6 w-2xs rounded-2xl flex flex-col gap-2">
 	<i class="ri-instance-fill text-3xl"></i>
 	<div>
 		<h4 class="font-bold text-xl"> <%= category.name %> </h4>
 		<p> <%= category.description %></p>
 	</div>
+	<a class="border border-secundary text-center rounded-md py-1 text-secundary hover:bg-secundary hover:text-neutral" href="/categories/<%= category.id %>">view category</a>
 </div>
