@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch --env-file=.env app.js",
-    "start": "node --env-file=.env app.js"
+    "start": "node --env-file=.env app.js",
+    "build:css": "tailwindcss -i ./src/input.css -o ./public/css/output.css --watch"
   },
   "repository": {
     "type": "git",
