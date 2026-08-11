@@ -1,0 +1,18 @@
+<div class="w-2xs rounded-md bg-gray-200 hover:shadow-md hover:shadow-black">
+	<div class="rounded-t-md h-32 flex items-center justify-center bg-primary text-neutral font-bold">
+		Image
+	</div>
+	<div class="px-2.5 py-1.5 flex flex-col gap-1 ">
+		<h4 class="font-bold">
+			<%= prod.name %>
+		</h4>
+		<span class="bg-secundary text-neutral rounded-md px-2 py-1">
+			<%= prod.category_name %>
+		</span>
+		<div class="flex justify-between my-2">
+			<p class="font-bold text-md">$<%= prod.price %></p>
+			<p class="bg-primary rounded-md text-tertiary px-2 py-1"><%= prod.qtd_stock %> in stock</p>
+		</div>
+		<a class="border border-secundary text-center rounded-md py-1 text-secundary hover:bg-secundary hover:text-neutral" href="/products/<%= prod.id %>">view item</a>
+	</div>
+</div>

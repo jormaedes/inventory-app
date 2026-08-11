@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/output.css">
+
+	<title>FakeStore</title>
+</head>
+
+<body class="flex flex-col h-screen gap-4">
+	<%- include('header') %>
+		<main class="flex-auto flex mb-1.5">
+			<div class="container mx-auto py-2.5">
+				<div class="flex items-center justify-between gap-1.5 mb-3">
+					<h3 class="font-bold text-2xl">Products</h3>
+					<a class="rounded-md px-2 font-medium py-1 border bg-black text-neutral" href="/products/new">+
+						Add Products</a>
+				</div>
+				<div class="flex flex-wrap gap-2.5">
+					<% products.forEach(prod=> { %>
+						<%- include('product', { prod: prod }) %>
+							<% }); %>
+				</div>
+			</div>
+
+		</main>
+		<%- include('footer') %>
+</body>
+
+</html>
