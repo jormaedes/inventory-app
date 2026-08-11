@@ -1,0 +1,23 @@
+{
+  "name": "inventory-app",
+  "version": "1.0.0",
+  "description": "Inventory management app for an imaginary store.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jormaedes/inventory-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/jormaedes/inventory-app/issues"
+  },
+  "homepage": "https://github.com/jormaedes/inventory-app#readme"
+}
