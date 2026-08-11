@@ -24,4 +24,11 @@ async function getSingleProduct(id) {
 	return product;
 }
 
-export { getAllCategory, getAllProduct, getSingleProduct };
+async function getSingleCategory(id) {
+	const query = `SELECT * FROM category WHERE id = $1`;
+	const { rows } = await pool.query(query, [id]);
+	const category = rows[0];
+	return category;
+}
+
+export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory };
