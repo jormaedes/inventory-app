@@ -12,4 +12,16 @@ async function getAllProduct() {
 	return rows;
 }
 
-export { getAllCategory, getAllProduct };
+async function getSingleProduct(id) {
+	const query = `
+  SELECT product.id, product.name, qtd_stock, price, category.name AS category_name
+  FROM product
+  JOIN category ON product.category_id = category.id
+  WHERE product.id = $1
+`;
+	const { rows } = await pool.query(query, [id]);
+	const product = rows[0];
+	return product;
+}
+
+export { getAllCategory, getAllProduct, getSingleProduct };
