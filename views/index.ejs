@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/output.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css">
+	<title>FakeStore</title>
+</head>
+<body class="flex flex-col h-screen">
+	<%- include('header') %>
+
+	<main class="flex-auto flex items-center text-center">
+		<div class="container mx-auto flex flex-col gap-4 items-center">
+			<h2 class="text-5xl font-bold">Welcome to FakeStore</h2>
+			<p class="xl:w-4xl">Pro Inventory is the industry standard system for efficient inventory management. Since its inception, it has been the essential tool for operations managers to ensure accuracy and control over their products and categories.</p>
+			<div class="flex items-center gap-2 justify-center">
+				<a class="rounded-md px-4 font-bold py-2 bg-secundary text-white" href="/products">View Product</a>
+				<a class="rounded-md px-4 font-bold py-2 border border-secundary text-secundary" href="/categories">View Category</a>
+			</div>
+		</div>
+	</main>
+
+	<%- include('footer') %>
+</body>
+</html>
