@@ -59,7 +59,15 @@ async function deleteCategory(id) {
 	} catch (error) {
 		console.error("Error updating category:", error);
 	}
-
 }
 
-export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct, updateCategory, deleteCategory };
+async function updateProduct(id, product) {
+	try {
+	const query = "UPDATE product SET name = $1, qtd_stock = $2, price = $3, category_id = $4 WHERE id = $5";
+	await pool.query(query, [product.name, product.stock, product.price, product.category, id]);
+	} catch (error) {
+		console.error("Error updating product:", error);
+	}
+}
+
+export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct, updateCategory, deleteCategory, updateProduct };
