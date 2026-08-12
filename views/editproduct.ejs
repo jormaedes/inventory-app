@@ -4,37 +4,42 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/output.css">
-
-	<title>FakeStore</title>
+	<title>Edit Product</title>
 </head>
-<body class="flex flex-col h-screen">
+<body class="flex flex-col min-h-screen bg-gray-50">
 	<%- include('header') %>
-	<main class="flex-auto flex">
-		<h1>Edit Product</h1>
-		<form action="/products/<%= product.id %>/edit" method="POST">
-			<div>
-				<label for="name">Product Name:</label>
-				<input type="text" id="name" name="name" value="<%= product.name %>" required>
+	<main class="flex-auto">
+		<div class="max-w-2xl mx-auto px-4 py-10">
+			<div class="bg-white p-6 rounded-lg shadow">
+				<h2 class="text-xl font-semibold mb-4">Edit Product</h2>
+				<form class="grid grid-cols-1 gap-4" action="/products/<%= product.id %>/edit" method="POST">
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Product Name</label>
+						<input required id="name" name="name" value="<%= product.name %>" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+					</div>
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Price</label>
+						<input required id="price" name="price" value="<%= product.price %>" type="number" step="0.01" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+					</div>
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Stock Quantity</label>
+						<input required id="stock" name="stock" value="<%= product.qtd_stock %>" type="number" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+					</div>
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Category</label>
+						<select id="category" name="category" required class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+							<% categories.forEach(category => { %>
+								<option value="<%= category.id %>" <%= category.name === product.category_name ? 'selected' : '' %>><%= category.name %></option>
+							<% }) %>
+						</select>
+					</div>
+					<div class="flex gap-2 justify-end">
+						<a href="/products" class="px-4 py-2 rounded-md border text-indigo-600 hover:bg-indigo-50">Cancel</a>
+						<button type="submit" class="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Update Product</button>
+					</div>
+				</form>
 			</div>
-			<div>
-				<label for="price">Price:</label>
-				<input type="number" step="0.01" id="price" name="price" value="<%= product.price %>" required>
-			</div>
-			<div>
-				<label for="stock">Stock Quantity:</label>
-				<input type="number" id="stock" name="stock" value="<%= product.qtd_stock %>" required>
-			</div>
-			<div>
-				<label for="category">Category:</label>
-				<select id="category" name="category" required>
-					<% categories.forEach(category => { %>
-						<option value="<%= category.id %>" <%= category.name === product.category_name ? 'selected' : '' %>><%= category.name %></option>
-					<% }) %>
-				</select>
-			</div>
-			<button type="submit">Update Product</button>
-			<a href="/products" class="bg-neutral text-center rounded-md py-1 text-secundary hover:bg-secundary hover:text-neutral">Cancel</a>
-		</form>
+		</div>
 	</main>
 	<%- include('footer') %>
 </body>
