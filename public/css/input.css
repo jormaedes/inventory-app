@@ -1,8 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 @import "tailwindcss";
 
 @theme {
-	--color-primary: #1E293B;
-	--color-secundary: #3B82F6;
-	--color-tertiary: #10B981;
-	--color-neutral: #F8FAFC;
+	--font-sans: "Hanken Grotesk", sans-serif;
+	--font-mono: "JetBrains Mono", monospace;
+}
+
+@layer base {
+	html, a, button, input, textarea {
+		font-family: var(--font-sans);
+	}
+
+	label {
+		font-family: var(--font-mono);
+	}
 }
