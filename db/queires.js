@@ -38,7 +38,7 @@ async function insertCategory(category) {
 
 async function getCategoryNames() {
 	const query = "SELECT id, name FROM category";
-	const {rows} = await pool.query(query);
+	const { rows } = await pool.query(query);
 	return rows;
 }
 
@@ -53,8 +53,13 @@ async function updateCategory(id, category) {
 }
 
 async function deleteCategory(id) {
-	const query = "DELETE FROM category WHERE id = $1";
-	await pool.query(query, [id]);
+	try {
+		const query = "DELETE FROM category WHERE id = $1";
+		await pool.query(query, [id]);
+	} catch (error) {
+		console.error("Error updating category:", error);
+	}
+
 }
 
 export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct, updateCategory, deleteCategory };
