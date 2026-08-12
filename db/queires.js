@@ -31,4 +31,9 @@ async function getSingleCategory(id) {
 	return category;
 }
 
-export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory };
+async function insertCategory(category) {
+	const query = "INSERT INTO category(name, description) VALUES ($1, $2)";
+	await pool.query(query, [category.name, category.description]);
+}
+
+export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory };
