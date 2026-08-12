@@ -4,24 +4,30 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/output.css">
-	<title>FakeStore</title>
+	<title>Edit Category</title>
 </head>
-<body class="flex flex-col h-screen">
+<body class="flex flex-col min-h-screen bg-gray-50">
 	<%- include('header') %>
-	<main class="">
-		<h1>Edit Category</h1>
-		<form action="/categories/<%= category.id %>/edit" method="POST">
-			<div>
-				<label for="name">Category Name:</label>
-				<input type="text" id="name" name="name" value="<%= category.name %>" required>
+	<main class="flex-auto">
+		<div class="max-w-2xl mx-auto px-4 py-10">
+			<div class="bg-white p-6 rounded-lg shadow">
+				<h2 class="text-xl font-semibold mb-4">Edit Category</h2>
+				<form class="grid grid-cols-1 gap-4" action="/categories/<%= category.id %>/edit" method="POST">
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Category Name</label>
+						<input required id="name" name="name" value="<%= category.name %>" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+					</div>
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Description</label>
+						<textarea id="description" name="description" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" required><%= category.description %></textarea>
+					</div>
+					<div class="flex gap-2 justify-end">
+						<a href="/categories" class="px-4 py-2 rounded-md border text-indigo-600 hover:bg-indigo-50">Cancel</a>
+						<button type="submit" class="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Update Category</button>
+					</div>
+				</form>
 			</div>
-			<div>
-				<label for="description">Description:</label>
-				<textarea id="description" name="description" required><%= category.description %></textarea>
-			</div>
-			<button type="submit">Update Category</button>
-			<a href="/categories" class="bg-neutral text-center rounded-md py-1 text-secundary hover:bg-secundary hover:text-neutral">Cancel</a>
-		</form>
+		</div>
 	</main>
 	<%- include('footer') %>
 </body>

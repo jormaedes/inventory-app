@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/output.css">
-
-	<title>FakeStore</title>
+	<title>FakeStore — Add Category</title>
 </head>
-
-<body class="flex flex-col h-screen">
+<body class="flex flex-col min-h-screen bg-gray-50">
 	<%- include('header') %>
-		<main class="flex-auto flex">
-			<div class="container mx-auto py-2.5 flex items-center justify-center bg-gray-400">
-				<form class="flex flex-col gap-2" action="/categories/new" method="post">
-					<div class="flex flex-col">
-						<label for="name">Category name:</label>
-						<input class="bg-neutral" type="text" name="name" id="name">
+
+	<main class="flex-auto">
+		<div class="max-w-2xl mx-auto px-4 py-10">
+			<div class="bg-white p-6 rounded-lg shadow">
+				<h2 class="text-xl font-semibold mb-4">Add Category</h2>
+				<form class="grid grid-cols-1 gap-4" action="/categories/new" method="post">
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Category name</label>
+						<input required name="name" id="name" type="text" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
 					</div>
-					<div class="flex flex-col">
-						<label for="description">Description</label>
-						<textarea class="bg-neutral" name="description" id="description"></textarea>
+					<div>
+						<label class="block text-sm font-medium text-gray-700">Description</label>
+						<textarea name="description" id="description" class="mt-1 block w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
 					</div>
-					<button class="rounded-md bg-secundary" type="submit">Add Category</button>
+					<div class="flex gap-2 justify-end">
+						<a href="/categories" class="px-4 py-2 rounded-md border text-indigo-600 hover:bg-indigo-50">Cancel</a>
+						<button type="submit" class="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700">Add Category</button>
+					</div>
 				</form>
 			</div>
-		</main>
-		<%- include('footer') %>
-</body>
+		</div>
+	</main>
 
+	<%- include('footer') %>
+</body>
 </html>
