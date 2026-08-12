@@ -2,7 +2,20 @@ import express from 'express';
 import process from 'process';
 import path from 'path';
 import { validationResult } from 'express-validator';
-import { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct } from './db/queires.js';
+import { 
+	getAllCategory, 
+	getAllProduct, 
+	getSingleProduct, 
+	getSingleCategory, 
+	insertCategory, 
+	getCategoryNames, 
+	insertProduct,
+	updateCategory,
+	deleteCategory,
+	updateProduct,
+	deleteProduct
+} from './db/queires.js';
+
 import productValidationRules from './validators/productValidator.js';
 import categoryValidationRules from './validators/categoryValidator.js';
 
@@ -44,15 +57,35 @@ app.post('/products/new', productValidationRules, async (req, res) => {
 	res.redirect('/products');
 });
 
-app.get('/products/:id', async (req, res)=>{
+app.get('/products/:id/edit', async (req, res)=>{
 	const { id } = req.params;
 	const product = await getSingleProduct(Number.parseInt(id));
+	const allCategories = await getCategoryNames();
 	if (!product)
 	{
-		res.redirect('/');
+		res.redirect('/products');
 		return;
 	}
-	res.send(product);
+	res.render('editproduct', {product: product, categories: allCategories});
+})
+
+app.post('/products/:id/edit', productValidationRules, async (req, res) => {
+	const { id } = req.params;
+	const { name, price, stock, category } = req.body;
+	const allCategories = await getCategoryNames();
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).send(errors);
+	}
+	await updateProduct(Number.parseInt(id), {name, price, stock, category});
+	res.redirect('/products');
+	return ;
+});
+
+app.get('/products/:id/delete', async (req, res)=>{
+	const { id } = req.params;
+	await deleteProduct(Number.parseInt(id));
+	res.redirect('/products');
 })
 
 app.get('/categories/new', async (req, res) => {
@@ -81,6 +114,32 @@ app.get('/categories/:id/edit', async (req, res)=>{
 	res.render('editcategory', {category: category});
 })
 
+app.get('/categories/:id/delete', async (req, res) => {
+	try {
+	const { id } = req.params;
+	await deleteCategory(Number.parseInt(id));
+	res.redirect('/categories');
+	} catch (error) {
+		res.status(500).send('Error deleting category because it is associated with products. Please delete the associated products first.');
+	}
+})
+
+app.post('/categories/:id/edit', categoryValidationRules, async (req, res) => {
+	const { id } = req.params;
+	const { name, description } = req.body;
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(400).send(errors);
+	}
+	await updateCategory(Number.parseInt(id), {name, description});
+	res.redirect('/categories');
+	return ;
+});
+
+app.use((req, res, next) => {
+	// console.error(err.stack);
+	res.status(500).send('Something went wrong!');
+});
 
 
 app.listen(PORT, async () => {
