@@ -3,11 +3,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/output.css">
 	<title>FakeStore</title>
 </head>
-<body>
+<body class="flex flex-col h-screen">
 	<%- include('header') %>
-	
+	<main class="">
+		<h1>Edit Category</h1>
+		<form action="/categories/<%= category.id %>/edit" method="POST">
+			<div>
+				<label for="name">Category Name:</label>
+				<input type="text" id="name" name="name" value="<%= category.name %>" required>
+			</div>
+			<div>
+				<label for="description">Description:</label>
+				<textarea id="description" name="description" required><%= category.description %></textarea>
+			</div>
+			<button type="submit">Update Category</button>
+			<a href="/categories" class="bg-neutral text-center rounded-md py-1 text-secundary hover:bg-secundary hover:text-neutral">Cancel</a>
+		</form>
+	</main>
 	<%- include('footer') %>
 </body>
 </html>
