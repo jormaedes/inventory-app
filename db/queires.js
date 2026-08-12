@@ -70,4 +70,13 @@ async function updateProduct(id, product) {
 	}
 }
 
-export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct, updateCategory, deleteCategory, updateProduct };
+async function deleteProduct(id) {
+	try {
+		const query = "DELETE FROM product WHERE id = $1";
+		await pool.query(query, [id]);
+	} catch (error) {
+		console.error("Error deleting product:", error);
+	}
+}
+
+export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct, updateCategory, deleteCategory, updateProduct, deleteProduct };
