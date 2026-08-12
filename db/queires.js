@@ -57,7 +57,7 @@ async function deleteCategory(id) {
 		const query = "DELETE FROM category WHERE id = $1";
 		await pool.query(query, [id]);
 	} catch (error) {
-		console.error("Error updating category:", error);
+		throw new Error(`Error deleting category with id ${id}: ${error.message}`);	
 	}
 }
 
