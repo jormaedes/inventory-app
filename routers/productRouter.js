@@ -13,35 +13,50 @@ import productValidationRules from "../validators/productValidator.js";
 const productRouter = Router();
 
 productRouter.get('/', async (req, res) => {
-	const products = await getAllProduct();
-	res.render('allproducts', { products: products })
+	try {
+		const products = await getAllProduct();
+		res.render('allproducts', { products: products })
+	} catch (err) {
+		res.status(500).render('error', { status: 500, message: 'Failed to load products.', details: err.message });
+	}
 });
 
 productRouter.get('/new', async (req, res) => {
-	const categories = await getCategoryNames();
-	res.render('addproducts', {categories: categories})
+	try {
+		const categories = await getCategoryNames();
+		res.render('addproducts', {categories: categories})
+	} catch (err) {
+		res.status(500).render('error', { status: 500, message: 'Failed to load categories for product creation.', details: err.message });
+	}
 });
 
 productRouter.post('/new', productValidationRules, async (req, res) => {
 	const {name, price, stock, category } = req.body;
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.status(400).send(errors);
+		return res.status(400).render('error', { status: 400, message: 'Validation failed.', errors: errors.array() });
 	}
-	await insertProduct({name, price, stock, category});
-	res.redirect('/products');
+	try {
+		await insertProduct({name, price, stock, category});
+		res.redirect('/products');
+	} catch (err) {
+		res.status(500).render('error', { status: 500, message: 'Failed to insert product.', details: err.message });
+	}
 });
 
 productRouter.get('/:id/edit', async (req, res)=>{
 	const { id } = req.params;
-	const product = await getSingleProduct(Number.parseInt(id));
-	const allCategories = await getCategoryNames();
-	if (!product)
-	{
-		res.redirect('/products');
-		return;
+	try {
+		const product = await getSingleProduct(Number.parseInt(id));
+		const allCategories = await getCategoryNames();
+		if (!product) {
+			res.redirect('/products');
+			return;
+		}
+		res.render('editproduct', {product: product, categories: allCategories});
+	} catch (err) {
+		res.status(500).render('error', { status: 500, message: 'Failed to load product for editing.', details: err.message });
 	}
-	res.render('editproduct', {product: product, categories: allCategories});
 })
 
 productRouter.post('/:id/edit', productValidationRules, async (req, res) => {
@@ -50,17 +65,25 @@ productRouter.post('/:id/edit', productValidationRules, async (req, res) => {
 	const allCategories = await getCategoryNames();
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
-		return res.status(400).send(errors);
+		return res.status(400).render('error', { status: 400, message: 'Validation failed.', errors: errors.array() });
 	}
-	await updateProduct(Number.parseInt(id), {name, price, stock, category});
-	res.redirect('/products');
-	return ;
+	try {
+		await updateProduct(Number.parseInt(id), {name, price, stock, category});
+		res.redirect('/products');
+		return ;
+	} catch (err) {
+		res.status(500).render('error', { status: 500, message: 'Failed to update product.', details: err.message });
+	}
 });
 
 productRouter.get('/:id/delete', async (req, res)=>{
-	const { id } = req.params;
-	await deleteProduct(Number.parseInt(id));
-	res.redirect('/products');
+	try {
+		const { id } = req.params;
+		await deleteProduct(Number.parseInt(id));
+		res.redirect('/products');
+	} catch (err) {
+		res.status(500).render('error', { status: 500, message: 'Failed to delete product.', details: err.message });
+	}
 })
 
 export default productRouter;
