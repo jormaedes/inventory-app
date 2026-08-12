@@ -18,6 +18,7 @@ import {
 
 import productValidationRules from './validators/productValidator.js';
 import categoryValidationRules from './validators/categoryValidator.js';
+import productRouter from './routers/productRouter.js';
 
 const __dirname = import.meta.dirname;
 const PORT = process.env.PORT || 3000;
@@ -32,61 +33,12 @@ app.get('/', async (req, res) => {
 	res.render('index');
 })
 
+app.use('/products', productRouter);
+
 app.get('/categories', async (req, res) => {
 	const categories = await getAllCategory();
 	res.render('allcategories', { categories: categories });
 });
-
-app.get('/products', async (req, res) => {
-	const products = await getAllProduct();
-	res.render('allproducts', { products: products })
-});
-
-app.get('/products/new', async (req, res) => {
-	const categories = await getCategoryNames();
-	res.render('addproducts', {categories: categories})
-});
-
-app.post('/products/new', productValidationRules, async (req, res) => {
-	const {name, price, stock, category } = req.body;
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).send(errors);
-	}
-	await insertProduct({name, price, stock, category});
-	res.redirect('/products');
-});
-
-app.get('/products/:id/edit', async (req, res)=>{
-	const { id } = req.params;
-	const product = await getSingleProduct(Number.parseInt(id));
-	const allCategories = await getCategoryNames();
-	if (!product)
-	{
-		res.redirect('/products');
-		return;
-	}
-	res.render('editproduct', {product: product, categories: allCategories});
-})
-
-app.post('/products/:id/edit', productValidationRules, async (req, res) => {
-	const { id } = req.params;
-	const { name, price, stock, category } = req.body;
-	const allCategories = await getCategoryNames();
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(400).send(errors);
-	}
-	await updateProduct(Number.parseInt(id), {name, price, stock, category});
-	res.redirect('/products');
-	return ;
-});
-
-app.get('/products/:id/delete', async (req, res)=>{
-	const { id } = req.params;
-	await deleteProduct(Number.parseInt(id));
-	res.redirect('/products');
-})
 
 app.get('/categories/new', async (req, res) => {
 	res.render('addcategory');
