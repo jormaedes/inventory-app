@@ -52,4 +52,9 @@ async function updateCategory(id, category) {
 	await pool.query(query, [category.name, category.description, id]);
 }
 
-export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct, updateCategory };
+async function deleteCategory(id) {
+	const query = "DELETE FROM category WHERE id = $1";
+	await pool.query(query, [id]);
+}
+
+export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct, updateCategory, deleteCategory };
