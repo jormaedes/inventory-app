@@ -36,4 +36,15 @@ async function insertCategory(category) {
 	await pool.query(query, [category.name, category.description]);
 }
 
-export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory };
+async function getCategoryNames() {
+	const query = "SELECT id, name FROM category";
+	const {rows} = await pool.query(query);
+	return rows;
+}
+
+async function insertProduct(product) {
+	const query = "INSERT INTO product(name, qtd_stock, price, category_id) VALUES ($1, $2, $3, $4)";
+	await pool.query(query, [product.name, product.stock, product.price, product.category]);
+}
+
+export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct };
