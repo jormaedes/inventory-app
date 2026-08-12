@@ -1,21 +1,17 @@
-<div class="w-2xs rounded-md bg-gray-200 hover:shadow-md hover:shadow-black">
-	<div class="rounded-t-md h-32 flex items-center justify-center bg-primary text-neutral font-bold">
-		Image
+<div class="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
+	<div class="h-40 bg-gray-100 flex items-center justify-center text-gray-400">
+		<span>Image</span>
 	</div>
-	<div class="px-2.5 py-1.5 flex flex-col gap-1 ">
-		<h4 class="font-bold">
-			<%= prod.name %>
-		</h4>
-		<span class="bg-secundary text-neutral rounded-md px-2 py-1">
-			<%= prod.category_name %>
-		</span>
-		<div class="flex justify-between my-2">
-			<p class="font-bold text-md">$<%= prod.price %></p>
-			<p class="bg-primary rounded-md text-tertiary px-2 py-1"><%= prod.qtd_stock %> in stock</p>
+	<div class="p-4 flex flex-col gap-2">
+		<h4 class="font-semibold text-lg text-gray-900"><%= prod.name %></h4>
+		<span class="text-sm text-gray-500"><%= prod.category_name %></span>
+		<div class="flex items-center justify-between mt-3">
+			<p class="font-bold text-lg text-gray-900">$<%= prod.price %></p>
+			<p class="text-sm px-2 py-1 rounded bg-indigo-100 text-indigo-700"><%= prod.qtd_stock %> in stock</p>
 		</div>
-		<div class="flex gap-2">
-		<a class="border border-secundary text-center rounded-md py-1 text-secundary hover:bg-secundary hover:text-neutral" href="/products/<%= prod.id %>/edit">view item</a>
-		<a class="text-center rounded-md py-1 bg-red-600 text-neutral" href="/products/<%= prod.id %>/delete">delete</a>
-	</div>
+		<div class="mt-3 flex gap-2">
+			<a class="flex-1 text-center py-2 border border-indigo-600 text-indigo-600 rounded-md hover:bg-indigo-50 transition" href="/products/<%= prod.id %>/edit">Edit</a>
+			<a class="flex-1 text-center py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition" href="/products/<%= prod.id %>/delete">Delete</a>
+		</div>
 	</div>
 </div>
