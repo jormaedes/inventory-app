@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/output.css">
+
+	<title>FakeStore</title>
+</head>
+<body class="flex flex-col h-screen">
+	<%- include('header') %>
+	<main class="flex-auto flex">
+		<h1>Edit Product</h1>
+		<form action="/products/<%= product.id %>/edit" method="POST">
+			<div>
+				<label for="name">Product Name:</label>
+				<input type="text" id="name" name="name" value="<%= product.name %>" required>
+			</div>
+			<div>
+				<label for="price">Price:</label>
+				<input type="number" step="0.01" id="price" name="price" value="<%= product.price %>" required>
+			</div>
+			<div>
+				<label for="stock">Stock Quantity:</label>
+				<input type="number" id="stock" name="stock" value="<%= product.qtd_stock %>" required>
+			</div>
+			<div>
+				<label for="category">Category:</label>
+				<select id="category" name="category" required>
+					<% categories.forEach(category => { %>
+						<option value="<%= category.id %>" <%= category.name === product.category_name ? 'selected' : '' %>><%= category.name %></option>
+					<% }) %>
+				</select>
+			</div>
+			<button type="submit">Update Product</button>
+			<a href="/products" class="bg-neutral text-center rounded-md py-1 text-secundary hover:bg-secundary hover:text-neutral">Cancel</a>
+		</form>
+	</main>
+	<%- include('footer') %>
+</body>
+</html>
