@@ -1,7 +1,7 @@
 import pool from "./db.js";
 
 async function getAllCategory() {
-	const query = "SELECT * FROM category";
+	const query = "SELECT * FROM category ORDER BY id";
 	const { rows } = await pool.query(query);
 	return rows;
 }
@@ -47,4 +47,9 @@ async function insertProduct(product) {
 	await pool.query(query, [product.name, product.stock, product.price, product.category]);
 }
 
-export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct };
+async function updateCategory(id, category) {
+	const query = "UPDATE category SET name = $1, description = $2 WHERE id = $3";
+	await pool.query(query, [category.name, category.description, id]);
+}
+
+export { getAllCategory, getAllProduct, getSingleProduct, getSingleCategory, insertCategory, getCategoryNames, insertProduct, updateCategory };
