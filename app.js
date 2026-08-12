@@ -24,9 +24,8 @@ app.use('/products', productRouter);
 app.use('/categories', categoryRouter);
 
 
-app.use((req, res, next) => {
-	// console.error(err.stack);
-	res.status(500).send('Something went wrong!');
+app.use((req, res) => {
+	res.status(500).render('error', { status: 500, message: 'Internal Server Error', details: 'An unexpected error occurred.' });
 });
 
 
