@@ -5,52 +5,6 @@
   :root, :host {
     --font-sans: "Hanken Grotesk", sans-serif;
     --font-mono: "JetBrains Mono", monospace;
-    --color-red-500: oklch(63.7% 0.237 25.331);
-    --color-red-600: oklch(57.7% 0.245 27.325);
-    --color-red-700: oklch(50.5% 0.213 27.518);
-    --color-indigo-50: oklch(96.2% 0.018 272.314);
-    --color-indigo-100: oklch(93% 0.034 272.788);
-    --color-indigo-200: oklch(87% 0.065 274.039);
-    --color-indigo-400: oklch(67.3% 0.182 276.935);
-    --color-indigo-500: oklch(58.5% 0.233 277.117);
-    --color-indigo-600: oklch(51.1% 0.262 276.966);
-    --color-indigo-700: oklch(45.7% 0.24 277.023);
-    --color-gray-50: oklch(98.5% 0.002 247.839);
-    --color-gray-100: oklch(96.7% 0.003 264.542);
-    --color-gray-200: oklch(92.8% 0.006 264.531);
-    --color-gray-400: oklch(70.7% 0.022 261.325);
-    --color-gray-500: oklch(55.1% 0.027 264.364);
-    --color-gray-600: oklch(44.6% 0.03 256.802);
-    --color-gray-700: oklch(37.3% 0.034 259.733);
-    --color-gray-800: oklch(27.8% 0.033 256.848);
-    --color-gray-900: oklch(21% 0.034 264.665);
-    --color-white: #fff;
-    --spacing: 0.25rem;
-    --container-2xl: 42rem;
-    --container-4xl: 56rem;
-    --container-7xl: 80rem;
-    --text-sm: 0.875rem;
-    --text-sm--line-height: calc(1.25 / 0.875);
-    --text-lg: 1.125rem;
-    --text-lg--line-height: calc(1.75 / 1.125);
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2 / 1.5);
-    --text-3xl: 1.875rem;
-    --text-3xl--line-height: calc(2.25 / 1.875);
-    --text-4xl: 2.25rem;
-    --text-4xl--line-height: calc(2.5 / 2.25);
-    --text-5xl: 3rem;
-    --text-5xl--line-height: 1;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
-    --font-weight-extrabold: 800;
-    --radius-md: 0.375rem;
-    --radius-lg: 0.5rem;
-    --default-transition-duration: 150ms;
-    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -237,7 +191,7 @@
   }
   body {
     margin: 0;
-    color: #172721;
+    color: #222b38;
   }
   a {
     color: inherit;
@@ -251,13 +205,13 @@
   .app-body {
     min-height: 100vh;
     background-color: #f2f1ea;
-    background-image: linear-gradient(rgba(23, 39, 33, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 39, 33, 0.035) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(34, 43, 56, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 43, 56, 0.035) 1px, transparent 1px);
     background-size: 32px 32px;
   }
   .app-header {
     position: relative;
     z-index: 5;
-    border-bottom: 1px solid rgba(23, 39, 33, 0.14);
+    border-bottom: 1px solid rgba(34, 43, 56, 0.14);
     background: rgba(248, 247, 241, 0.94);
     backdrop-filter: blur(12px);
   }
@@ -280,8 +234,8 @@
     position: relative;
     width: 34px;
     height: 34px;
-    border: 1px solid #315d49;
-    background: #315d49;
+    border: 1px solid #304f82;
+    background: #304f82;
   }
   .brand-mark::before,	.brand-mark::after {
     position: absolute;
@@ -312,7 +266,7 @@
   }
   .brand-caption {
     margin-top: 5px;
-    color: #69756e;
+    color: #6c7583;
     font-size: 9px;
   }
   .site-nav,	.header-actions {
@@ -330,7 +284,7 @@
     transition: color 160ms ease, background 160ms ease;
   }
   .nav-link:hover,	.nav-link:focus-visible {
-    color: #172721;
+    color: #222b38;
     background: #e9ebe2;
   }
   .header-actions {
@@ -354,19 +308,19 @@
   }
   .action-link,	.button-primary {
     color: #f8f7f1;
-    background: #315d49;
+    background: #304f82;
   }
   .action-link:hover,	.button-primary:hover {
-    background: #244b39;
+    background: #223b63;
   }
   .action-link--secondary,	.button-secondary,	.button-quiet {
-    border-color: rgba(23, 39, 33, 0.2);
-    color: #315d49;
+    border-color: rgba(34, 43, 56, 0.2);
+    color: #304f82;
     background: transparent;
   }
   .action-link--secondary:hover,	.button-secondary:hover,	.button-quiet:hover {
-    border-color: #315d49;
-    background: #e8ebe3;
+    border-color: #304f82;
+    background: #e7eaf0;
   }
   .menu-toggle {
     display: none;
@@ -374,14 +328,14 @@
     height: 42px;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(23, 39, 33, 0.2);
-    color: #172721;
+    border: 1px solid rgba(34, 43, 56, 0.2);
+    color: #222b38;
     background: transparent;
     cursor: pointer;
   }
   .mobile-menu {
     padding: 10px 24px 18px;
-    border-top: 1px solid rgba(23, 39, 33, 0.12);
+    border-top: 1px solid rgba(34, 43, 56, 0.12);
     background: #f8f7f1;
   }
   .mobile-menu[hidden] {
@@ -390,7 +344,7 @@
   .mobile-menu a {
     display: block;
     padding: 12px 0;
-    border-bottom: 1px solid rgba(23, 39, 33, 0.1);
+    border-bottom: 1px solid rgba(34, 43, 56, 0.1);
     font-size: 14px;
     font-weight: 600;
   }
@@ -399,7 +353,7 @@
     padding: 12px 14px;
     border: 0;
     color: #f8f7f1;
-    background: #315d49;
+    background: #304f82;
   }
   .home-main,	.page-main {
     flex: 1;
@@ -440,13 +394,13 @@
     letter-spacing: -1.5px;
   }
   .home-title em {
-    color: #315d49;
+    color: #304f82;
     font-weight: 500;
   }
   .home-copy {
     max-width: 460px;
     margin: 0;
-    color: #626e66;
+    color: #626c7c;
     font-size: 17px;
     line-height: 1.75;
   }
@@ -459,8 +413,8 @@
   .home-note {
     margin-top: 40px;
     padding-top: 16px;
-    border-top: 1px solid rgba(23, 39, 33, 0.18);
-    color: #737d75;
+    border-top: 1px solid rgba(34, 43, 56, 0.18);
+    color: #77808d;
     font-family: var(--font-mono);
     font-size: 10px;
     text-transform: uppercase;
@@ -468,9 +422,9 @@
   .home-index {
     position: relative;
     padding: 30px;
-    border: 1px solid #254a38;
+    border: 1px solid #253c60;
     color: #f4f2e9;
-    background: #315d49;
+    background: #304f82;
     box-shadow: 12px 12px 0 #dfded3;
   }
   .home-index::after {
@@ -489,7 +443,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: #d4dfd3;
+    color: #dbe2ed;
     font-family: var(--font-mono);
     font-size: 10px;
     text-transform: uppercase;
@@ -523,7 +477,7 @@
   }
   .index-entry-meta {
     margin-top: 4px;
-    color: #d4dfd3;
+    color: #dbe2ed;
     font-size: 12px;
   }
   .index-arrow {
@@ -537,7 +491,7 @@
   .page-heading {
     margin-bottom: 30px;
     padding-bottom: 22px;
-    border-bottom: 1px solid rgba(23, 39, 33, 0.2);
+    border-bottom: 1px solid rgba(34, 43, 56, 0.2);
     display: flex;
     align-items: end;
     justify-content: space-between;
@@ -552,7 +506,7 @@
   }
   .page-subtitle {
     margin: 10px 0 0;
-    color: #69756e;
+    color: #6c7583;
     font-size: 14px;
   }
   .collection-grid {
@@ -562,23 +516,23 @@
   }
   .product-card,	.category-card {
     min-width: 0;
-    border: 1px solid rgba(23, 39, 33, 0.16);
+    border: 1px solid rgba(34, 43, 56, 0.16);
     background: #f8f7f1;
     transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
   }
   .product-card:hover,	.category-card:hover {
     transform: translateY(-3px);
-    border-color: rgba(49, 93, 73, 0.55);
-    box-shadow: 5px 6px 0 rgba(23, 39, 33, 0.08);
+    border-color: rgba(48, 79, 130, 0.55);
+    box-shadow: 5px 6px 0 rgba(34, 43, 56, 0.08);
   }
   .product-visual {
     position: relative;
     min-height: 170px;
     padding: 16px;
     overflow: hidden;
-    border-bottom: 1px solid rgba(23, 39, 33, 0.13);
+    border-bottom: 1px solid rgba(34, 43, 56, 0.13);
     background-color: #e7e7dc;
-    background-image: linear-gradient(135deg, transparent 49.7%, rgba(49, 93, 73, 0.11) 50%, transparent 50.3%), linear-gradient(45deg, transparent 49.7%, rgba(49, 93, 73, 0.08) 50%, transparent 50.3%);
+    background-image: linear-gradient(135deg, transparent 49.7%, rgba(48, 79, 130, 0.11) 50%, transparent 50.3%), linear-gradient(45deg, transparent 49.7%, rgba(48, 79, 130, 0.08) 50%, transparent 50.3%);
     background-size: 28px 28px;
   }
   .product-visual::after {
@@ -587,15 +541,15 @@
     bottom: -42px;
     width: 118px;
     height: 118px;
-    border: 1px solid rgba(49, 93, 73, 0.3);
+    border: 1px solid rgba(48, 79, 130, 0.3);
     border-radius: 50%;
-    box-shadow: 0 0 0 14px rgba(49, 93, 73, 0.05), 0 0 0 28px rgba(49, 93, 73, 0.04);
+    box-shadow: 0 0 0 14px rgba(48, 79, 130, 0.05), 0 0 0 28px rgba(48, 79, 130, 0.04);
     content: "";
   }
   .visual-index {
     position: relative;
     z-index: 1;
-    color: #596a5e;
+    color: #566476;
     font-family: var(--font-mono);
     font-size: 10px;
   }
@@ -616,8 +570,8 @@
   }
   .stock-badge {
     padding: 5px 8px;
-    color: #315d49;
-    background: #e4e9df;
+    color: #304f82;
+    background: #e4e8ef;
     font-family: var(--font-mono);
     font-size: 10px;
     white-space: nowrap;
@@ -639,7 +593,7 @@
     font-weight: 600;
   }
   .card-price-label {
-    color: #79827b;
+    color: #808896;
     font-family: var(--font-mono);
     font-size: 9px;
     text-transform: uppercase;
@@ -647,11 +601,11 @@
   .card-actions {
     margin-top: 19px;
     padding-top: 14px;
-    border-top: 1px solid rgba(23, 39, 33, 0.12);
+    border-top: 1px solid rgba(34, 43, 56, 0.12);
   }
   .card-action {
     padding: 5px 0;
-    color: #315d49;
+    color: #304f82;
     font-size: 12px;
     font-weight: 700;
   }
@@ -665,29 +619,29 @@
   .category-index {
     width: 38px;
     height: 38px;
-    border: 1px solid rgba(49, 93, 73, 0.35);
+    border: 1px solid rgba(48, 79, 130, 0.35);
     display: grid;
     place-items: center;
-    color: #315d49;
+    color: #304f82;
     font-family: var(--font-mono);
     font-size: 12px;
   }
   .category-description {
     min-height: 48px;
     margin: 17px 0 22px;
-    color: #69756e;
+    color: #6c7583;
     font-size: 14px;
     line-height: 1.65;
   }
   .empty-state {
     padding: 46px 24px;
-    border: 1px dashed rgba(23, 39, 33, 0.3);
+    border: 1px dashed rgba(34, 43, 56, 0.3);
     text-align: center;
     background: rgba(248, 247, 241, 0.65);
   }
   .empty-state p {
     margin: 0 0 18px;
-    color: #69756e;
+    color: #6c7583;
   }
   .form-wrap {
     width: min(100% - 48px, 720px);
@@ -707,7 +661,7 @@
   }
   .form-panel {
     padding: clamp(22px, 5vw, 38px);
-    border: 1px solid rgba(23, 39, 33, 0.17);
+    border: 1px solid rgba(34, 43, 56, 0.17);
     background: #f8f7f1;
     box-shadow: 8px 8px 0 #e0dfd4;
   }
@@ -722,7 +676,7 @@
   .form-label {
     display: block;
     margin-bottom: 8px;
-    color: #58665d;
+    color: #596577;
     font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 500;
@@ -732,17 +686,17 @@
     width: 100%;
     min-height: 48px;
     padding: 11px 13px;
-    border: 1px solid rgba(23, 39, 33, 0.24);
+    border: 1px solid rgba(34, 43, 56, 0.24);
     border-radius: 0;
-    color: #172721;
+    color: #222b38;
     background: #fffefa;
     font-size: 15px;
     outline: none;
     transition: border-color 150ms ease, box-shadow 150ms ease;
   }
   .form-control:focus {
-    border-color: #315d49;
-    box-shadow: 0 0 0 3px rgba(49, 93, 73, 0.13);
+    border-color: #304f82;
+    box-shadow: 0 0 0 3px rgba(48, 79, 130, 0.13);
   }
   .form-control:focus-visible,	button:focus-visible,	a:focus-visible {
     outline: 2px solid #c85e3c;
@@ -755,7 +709,7 @@
   .form-actions {
     margin-top: 5px;
     padding-top: 20px;
-    border-top: 1px solid rgba(23, 39, 33, 0.14);
+    border-top: 1px solid rgba(34, 43, 56, 0.14);
     display: flex;
     justify-content: flex-end;
     gap: 10px;
@@ -778,7 +732,7 @@
     gap: 10px;
   }
   .site-footer {
-    border-top: 1px solid rgba(23, 39, 33, 0.18);
+    border-top: 1px solid rgba(34, 43, 56, 0.18);
     background: #e9e9df;
   }
   .footer-inner {
@@ -796,15 +750,15 @@
   }
   .footer-meta {
     margin-top: 4px;
-    color: #69756e;
+    color: #6c7583;
     font-size: 11px;
   }
   .footer-meta a {
-    color: #315d49;
+    color: #304f82;
     font-weight: 700;
   }
   .footer-label {
-    color: #69756e;
+    color: #6c7583;
   }
   @keyframes reveal {
     from {
