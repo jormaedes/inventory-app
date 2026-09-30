@@ -6,21 +6,25 @@
 	<link rel="stylesheet" href="/css/output.css">
 	<title>FakeStore</title>
 </head>
-<body class="flex flex-col min-h-screen bg-gray-50">
+<body class="app-body flex flex-col">
 	<%- include('header') %>
 
-	<main class="flex-auto">
-		<div class="max-w-7xl mx-auto px-4 py-8">
-			<div class="flex items-center justify-between mb-6">
-				<h2 class="text-2xl font-bold text-gray-900">Categories</h2>
-				<a href="/categories/new" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded-md">+ Add Category</a>
+	<main class="page-main">
+		<div class="page-container">
+			<div class="page-heading">
+				<div><p class="page-kicker">Catalogue / 02</p><h1 class="page-title">Categories</h1><p class="page-subtitle">A useful structure for everything you keep.</p></div>
+				<a href="/categories/new" class="button-primary">Add category <span aria-hidden="true">+</span></a>
 			</div>
 
-			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+			<% if (categories.length) { %>
+			<div class="collection-grid">
 				<% categories.forEach(cat=> { %>
 					<%- include('category', { category: cat }) %>
 				<% }); %>
 			</div>
+			<% } else { %>
+			<div class="empty-state"><p>No categories have been created yet.</p><a href="/categories/new" class="button-primary">Create the first category <span aria-hidden="true">+</span></a></div>
+			<% } %>
 		</div>
 	</main>
 

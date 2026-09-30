@@ -1,39 +1,37 @@
-<header class="bg-white shadow">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="flex justify-between h-16 items-center">
-			<div class="flex items-center">
-				<a href="/" class="text-2xl font-extrabold text-indigo-600">FakeStore</a>
-			</div>
+<header class="app-header">
+	<div class="header-inner">
+		<a href="/" class="brand-link" aria-label="FakeStore, home">
+			<span class="brand-mark" aria-hidden="true"></span>
+			<span>
+				<span class="brand-name">FakeStore</span>
+				<span class="brand-caption">Inventory desk / 01</span>
+			</span>
+		</a>
 
-			<nav class="hidden md:flex space-x-4">
-				<a href="/" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md transition">Home</a>
-				<a href="/categories" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md transition">Categories</a>
-				<a href="/products" class="text-gray-700 hover:text-indigo-600 px-3 py-2 rounded-md transition">Products</a>
-			</nav>
+		<nav class="site-nav" aria-label="Main navigation">
+			<a href="/" class="nav-link">Overview</a>
+			<a href="/products" class="nav-link">Products</a>
+			<a href="/categories" class="nav-link">Categories</a>
+		</nav>
 
-			<div class="hidden md:flex items-center gap-2">
-				<a href="/products/new" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md font-medium transition">Add Product</a>
-				<a href="/categories/new" class="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-4 py-2 rounded-md font-medium transition">Add Category</a>
-			</div>
-
-			<div class="md:hidden">
-				<button id="nav-toggle" aria-label="Open menu" class="p-2 rounded-md text-gray-600 hover:bg-gray-100">
-					<svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-					</svg>
-				</button>
-			</div>
+		<div class="header-actions">
+			<a href="/categories/new" class="action-link action-link--secondary">New category</a>
+			<a href="/products/new" class="action-link">Add product <span aria-hidden="true">+</span></a>
 		</div>
+
+		<button id="nav-toggle" class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+			<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+				<path stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.7" d="M4 7h16M4 12h16M4 17h16" />
+			</svg>
+		</button>
 	</div>
 
-	<div id="mobile-menu" class="md:hidden hidden">
-		<div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
-			<a href="/" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Home</a>
-			<a href="/categories" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Categories</a>
-			<a href="/products" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-indigo-50 hover:text-indigo-600">Products</a>
-			<a href="/products/new" class="block px-3 py-2 rounded-md text-white bg-indigo-600 hover:bg-indigo-700">Add Product</a>
-			<a href="/categories/new" class="block px-3 py-2 rounded-md text-indigo-600 hover:bg-indigo-50">Add Category</a>
-		</div>
+	<div id="mobile-menu" class="mobile-menu" hidden>
+		<a href="/">Overview</a>
+		<a href="/products">Products</a>
+		<a href="/categories">Categories</a>
+		<a href="/products/new" class="mobile-action">Add product +</a>
+		<a href="/categories/new">New category</a>
 	</div>
 
 	<script>
@@ -41,7 +39,12 @@
 			const btn = document.getElementById('nav-toggle');
 			const menu = document.getElementById('mobile-menu');
 			if (btn && menu) {
-				btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+				btn.addEventListener('click', () => {
+					const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+					btn.setAttribute('aria-expanded', String(!isExpanded));
+					btn.setAttribute('aria-label', isExpanded ? 'Open menu' : 'Close menu');
+					menu.hidden = isExpanded;
+				});
 			}
 		});
 	</script>
